@@ -10,6 +10,8 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private GameObject panelPause;
     [SerializeField] private GameObject panelOptions;
     [SerializeField] private GameObject panelCredits;
+    [SerializeField] private GameObject playerOne;
+    [SerializeField] private GameObject playerTwo;
 
     [Header("Main Menu References")]
     [SerializeField] private Button btnPlayMM;
@@ -33,8 +35,12 @@ public class UIMainMenu : MonoBehaviour
 
     [SerializeField] private TMP_Text textPlayerOneValue;
     [SerializeField] private TMP_Text textPlayerTwoValue;
+    
+    [SerializeField] private Slider sliderHeightPlayerOne;
+    [SerializeField] private Slider sliderHeightPlayerTwo;
 
     bool isPaused = true;
+
     private void Awake()
     {
         // Main Menu Buttons
@@ -56,17 +62,24 @@ public class UIMainMenu : MonoBehaviour
         sliderPlayerOne.onValueChanged.AddListener(ChangeVelocityPlayerOne);
         sliderPlayerTwo.onValueChanged.AddListener(ChangeVelocityPlayerTwo);
 
+        sliderHeightPlayerOne.onValueChanged.AddListener(ChangeHeightPlayerOne);
+        sliderHeightPlayerTwo.onValueChanged.AddListener(ChangeHeightPlayerTwo);
+
     }
 
-    private void ChangeVelocityPlayerOne(float newValue)
+    private void Start()
     {
-        playerMovementPlayerOne.velocity = newValue;
-        textPlayerOneValue.text = newValue.ToString("F1");
-    }
-    private void ChangeVelocityPlayerTwo(float newValue)
-    {
-        playerMovementPlayerTwo.velocity = newValue;
-        textPlayerTwoValue.text = newValue.ToString("F1");
+        // Setting Default Values
+
+        Time.timeScale = 0;
+        sliderPlayerOne.value = playerMovementPlayerOne.velocity;
+        sliderPlayerTwo.value = playerMovementPlayerTwo.velocity;
+        textPlayerOneValue.text = playerMovementPlayerOne.velocity.ToString("F1");
+        textPlayerTwoValue.text = playerMovementPlayerTwo.velocity.ToString("F1");
+
+        sliderHeightPlayerOne.value = playerOne.transform.localScale.x;
+        sliderHeightPlayerTwo.value = playerTwo.transform.localScale.x;
+
     }
 
     private void Update()
@@ -94,6 +107,28 @@ public class UIMainMenu : MonoBehaviour
         btnOptionsBackPM.onClick.RemoveAllListeners();
     }
 
+    // Change Player Velocity
+    private void ChangeVelocityPlayerOne(float newValue)
+    {
+        playerMovementPlayerOne.velocity = newValue;
+        textPlayerOneValue.text = newValue.ToString("F1");
+    }   
+    private void ChangeVelocityPlayerTwo(float newValue)
+    {
+        playerMovementPlayerTwo.velocity = newValue;
+        textPlayerTwoValue.text = newValue.ToString("F1");
+    }
+
+    // Change Player Height
+    private void ChangeHeightPlayerOne(float newValue)
+    {
+        playerOne.transform.localScale = new Vector3(newValue, playerOne.transform.localScale.y, playerOne.transform.localScale.z);
+    }
+    private void ChangeHeightPlayerTwo(float newValue)
+    {
+        playerTwo.transform.localScale = new Vector3(newValue, playerTwo.transform.localScale.y, playerTwo.transform.localScale.z);
+    }
+    
     private void TogglePause()
     {
         isPaused = !isPaused;

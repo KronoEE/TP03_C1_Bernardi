@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     public float velocity = 0.1f;
-    public float angleRotation = 10f;
     public KeyCode KeyUp = KeyCode.W;
     public KeyCode KeyDown = KeyCode.S;
     public KeyCode KeyRight = KeyCode.D;
@@ -23,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         PlayerMove();
-        PlayerRotation();
         PlayerChangeColor();
     }
 
@@ -47,20 +45,6 @@ public class PlayerMovement : MonoBehaviour
             transform.position = transform.position + new Vector3(velocity, 0, 0) * Time.deltaTime;
         }
 
-    }
-
-    private void PlayerRotation()
-    {
-        // 10° rotation on Q key press (Left rotation)
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            transform.Rotate(new Vector3(0f, 0f, angleRotation));
-        }
-        // -10° rotation on E key press (Right rotation)
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            transform.Rotate(new Vector3(0f, 0f, -angleRotation));
-        }
     }
 
     private void PlayerChangeColor()
