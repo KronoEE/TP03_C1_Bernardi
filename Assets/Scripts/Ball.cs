@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Ball : MonoBehaviour
+{
+    public float speed;
+    public Rigidbody2D rigidBody;
+
+    void Start()
+    {
+        AddForce();
+    }
+
+    private void AddForce()
+    {
+        float x = Random.Range(0, 2) == 0 ? -1 : 1;
+        float y = Random.Range(0, 2) == 0 ? -1 : 1;
+        rigidBody.velocity = new Vector2(speed * x, speed * y);
+    }
+   
+}
