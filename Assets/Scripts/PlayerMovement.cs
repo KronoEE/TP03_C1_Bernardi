@@ -8,9 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public float velocity = 0.1f;
     public KeyCode KeyUp = KeyCode.W;
     public KeyCode KeyDown = KeyCode.S;
-    public KeyCode KeyRight = KeyCode.D;
-    public KeyCode KeyLeft = KeyCode.A;
-    
     [SerializeField] private KeyCode KeyChangeColor = KeyCode.R;
     
     void Start()
@@ -32,17 +29,10 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = transform.position + new Vector3(0, velocity, 0) * Time.deltaTime;
         }
-        if (Input.GetKey(KeyLeft))
-        {
-            transform.position = transform.position + new Vector3(-velocity, 0, 0) * Time.deltaTime;
-        }
+
         if (Input.GetKey(KeyDown))
         {
             transform.position = transform.position + new Vector3(0, -velocity, 0) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyRight))
-        {
-            transform.position = transform.position + new Vector3(velocity, 0, 0) * Time.deltaTime;
         }
 
     }
