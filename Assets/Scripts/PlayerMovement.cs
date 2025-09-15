@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode KeyUp = KeyCode.W;
     public KeyCode KeyDown = KeyCode.S;
     [SerializeField] private KeyCode KeyChangeColor = KeyCode.R;
+    [SerializeField] private float force = 10f;
+    [SerializeField] private Rigidbody2D rigidBody;
     
     void Start()
     {
@@ -18,23 +20,25 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        PlayerMove();
         PlayerChangeColor();
     }
 
+    private void FixedUpdate()
+    {
+        PlayerMove(); 
+    }
     private void PlayerMove()
     {
         // Move the player based on key inputs
         if (Input.GetKey(KeyUp))
         {
-            transform.position = transform.position + new Vector3(0, velocity, 0) * Time.deltaTime;
+            rigidBody.AddForce(Vector3.up * force);
         }
 
         if (Input.GetKey(KeyDown))
         {
-            transform.position = transform.position + new Vector3(0, -velocity, 0) * Time.deltaTime;
+            rigidBody.AddForce(Vector3.down * force);
         }
-
     }
 
     private void PlayerChangeColor()
