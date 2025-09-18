@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("WinScreen")]
+    public GameObject winScreen;
+
     [Header("Ball")]
     public GameObject ball;
 
@@ -29,12 +32,14 @@ public class GameManager : MonoBehaviour
         player01Score++;
         player01Text.GetComponent<TextMeshProUGUI>().text = player01Score.ToString();
         ResetPositions();
+        CheckGoals();
     }
     public void Player02Scored()
     {
         player02Score++;
         player02Text.GetComponent<TextMeshProUGUI>().text = player02Score.ToString();
         ResetPositions();
+        CheckGoals();
     }
 
     private void ResetPositions()
@@ -44,4 +49,17 @@ public class GameManager : MonoBehaviour
         player02Paddle.GetComponent<PlayerMovement>().Reset();
     }
 
+
+    private void CheckGoals()
+    {
+        if (player01Score >= 5 || player02Score >= 5)
+        {
+            EndGame();
+        }
+    }
+    private void EndGame()
+    {
+        Time.timeScale = 0;
+        winScreen.SetActive(true);
+    }
 }
