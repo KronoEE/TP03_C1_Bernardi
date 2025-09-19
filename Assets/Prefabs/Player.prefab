@@ -116,7 +116,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 4
 --- !u!114 &6805690041832034603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,14 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9c444eff179df48bf773b89914d784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 5
+  velocity: 100
   KeyUp: 119
   KeyLeft: 97
   KeyDown: 115
   KeyRight: 100
   startPos: {x: 0, y: 0, z: 0}
-  KeyChangeColor: 114
-  force: 10
   rigidBody: {fileID: 0}
 --- !u!61 &5669915395167468961
 BoxCollider2D:

@@ -9,8 +9,8 @@ public class Ball : MonoBehaviour
     public Vector3 startPos;
 
     [Header("Speed Increase Settings")]
-    public float speedIncreaseRate = 0.5f; // cuánto aumenta la velocidad
-    public float increaseInterval = 5f;     // cada cuántos segundos
+    public float speedIncreaseRate = 0.5f; 
+    public float increaseInterval = 5f;    
     private float timer;
 
     void Start()
@@ -22,13 +22,13 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        // Temporizador para aumentar la velocidad
+        // Timer to increase speed at intervals
         timer -= Time.deltaTime;
 
         if (timer <= 0f)
         {
             IncreaseSpeed();
-            timer = increaseInterval; // reiniciar el temporizador
+            timer = increaseInterval; 
         }
     }
 
@@ -43,7 +43,6 @@ public class Ball : MonoBehaviour
     {
         speed += speedIncreaseRate;
 
-        // Mantener dirección actual pero con la nueva velocidad
         Vector2 direction = rigidBody.velocity.normalized;
         rigidBody.velocity = direction * speed;
     }
@@ -52,7 +51,7 @@ public class Ball : MonoBehaviour
     {
         rigidBody.velocity = Vector2.zero;
         transform.position = startPos;
-        speed = 5f; // reiniciar la velocidad base
+        speed = 5f; 
         AddForce();
         timer = increaseInterval;
     }

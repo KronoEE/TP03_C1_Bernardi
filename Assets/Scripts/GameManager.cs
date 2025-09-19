@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("WinScreen")]
     public GameObject winScreen;
+    public TextMeshProUGUI winText;
 
     [Header("Ball")]
     public GameObject ball;
@@ -61,5 +62,15 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         winScreen.SetActive(true);
+
+        if (player01Score >= 5)
+        {
+            winText.text = "Player 1 Wins!";
+        }
+        
+        if (player02Score >= 5)
+        {
+            winText.text = "Player 2 Wins!";
+        }
     }
 }

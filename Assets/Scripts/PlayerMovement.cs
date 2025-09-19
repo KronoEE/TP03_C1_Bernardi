@@ -5,15 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    public float velocity = 0.1f;
+    public float velocity = 50f;
     public KeyCode KeyUp = KeyCode.W;
     public KeyCode KeyLeft = KeyCode.A;
     public KeyCode KeyDown = KeyCode.S;
     public KeyCode KeyRight = KeyCode.D;
 
     public Vector3 startPos;
-    [SerializeField] private KeyCode KeyChangeColor = KeyCode.R;
-    [SerializeField] private float force = 10f;
     [SerializeField] private Rigidbody2D rigidBody;
 
 
@@ -26,10 +24,6 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
-    void Update()
-    {
-        PlayerChangeColor();
-    }
 
     private void FixedUpdate()
     {
@@ -41,24 +35,24 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyUp))
         {
 
-            rigidBody.AddForce(Vector2.up * force);
+            rigidBody.AddForce(Vector2.up * velocity);   
         }
 
         if (Input.GetKey(KeyDown))
         {
 
-            rigidBody.AddForce(Vector2.down * force);
+            rigidBody.AddForce(Vector2.down * velocity);
         }
         if (Input.GetKey(KeyLeft))
         {
 
-            rigidBody.AddForce(Vector2.left * force);
+            rigidBody.AddForce(Vector2.left * velocity);
         }
 
         if (Input.GetKey(KeyRight))
         {
 
-            rigidBody.AddForce(Vector2.right * force);
+            rigidBody.AddForce(Vector2.right * velocity);
         }
 
     }
@@ -68,29 +62,4 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = Vector2.zero;
         transform.position = startPos;
     }
-
-    private void PlayerChangeColor()
-    {
-        // Change Color on R key press
-        if (Input.GetKeyUp(KeyChangeColor))
-        {
-            Color randomColor = new Color(Random.value, Random.value, Random.value);
-
-            spriteRenderer.color = randomColor;
-        }
-    }
-
-private void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.CompareTag("Wall"))
-    {
-        GetComponent<SpriteRenderer>().color = Color.black;
-    }
-
-    if (other.CompareTag("Ball"))
-    {
-        GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
-    }
-}
-
 }
