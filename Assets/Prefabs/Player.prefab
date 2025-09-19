@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 87729439374211511}
   - component: {fileID: 6805690041832034603}
   - component: {fileID: 5669915395167468961}
+  - component: {fileID: 9148636891664088040}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -130,8 +131,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 5
   KeyUp: 119
+  KeyLeft: 97
   KeyDown: 115
+  KeyRight: 100
+  startPos: {x: 0, y: 0, z: 0}
   KeyChangeColor: 114
+  force: 10
+  rigidBody: {fileID: 0}
 --- !u!61 &5669915395167468961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178,3 +184,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.75, y: 0.09375}
   m_EdgeRadius: 0
+--- !u!114 &9148636891664088040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896403697046524348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41a22c33f7349646a17d4138bd9aa65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

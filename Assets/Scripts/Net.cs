@@ -12,11 +12,11 @@ public class Net : MonoBehaviour
         {
             if (isPlayer01Goal)
             {
-                GameObject.Find("GameSettings").GetComponent<GameManager>().Player01Scored();
+                GameObject.Find("GameManager").GetComponent<GameManager>().Player01Scored();
             }
             else
             {
-                GameObject.Find("GameSettings").GetComponent<GameManager>().Player02Scored();
+                GameObject.Find("GameManager").GetComponent<GameManager>().Player02Scored();
             }
         }
     }

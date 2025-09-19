@@ -7,14 +7,16 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public float velocity = 0.1f;
     public KeyCode KeyUp = KeyCode.W;
+    public KeyCode KeyLeft = KeyCode.A;
     public KeyCode KeyDown = KeyCode.S;
+    public KeyCode KeyRight = KeyCode.D;
 
     public Vector3 startPos;
     [SerializeField] private KeyCode KeyChangeColor = KeyCode.R;
     [SerializeField] private float force = 10f;
     [SerializeField] private Rigidbody2D rigidBody;
-    
-    
+
+
     void Start()
     {
         //Setting the start position of the player
@@ -31,20 +33,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove(); 
+        PlayerMove();
     }
     private void PlayerMove()
     {
         // Move the player based on key inputs
         if (Input.GetKey(KeyUp))
         {
+
             rigidBody.AddForce(Vector2.up * force);
         }
 
         if (Input.GetKey(KeyDown))
         {
+
             rigidBody.AddForce(Vector2.down * force);
         }
+        if (Input.GetKey(KeyLeft))
+        {
+
+            rigidBody.AddForce(Vector2.left * force);
+        }
+
+        if (Input.GetKey(KeyRight))
+        {
+
+            rigidBody.AddForce(Vector2.right * force);
+        }
+
     }
 
     public void Reset()
@@ -63,5 +79,18 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.color = randomColor;
         }
     }
+
+private void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Wall"))
+    {
+        GetComponent<SpriteRenderer>().color = Color.black;
+    }
+
+    if (other.CompareTag("Ball"))
+    {
+        GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
+    }
+}
 
 }
